@@ -11,16 +11,24 @@ var options  = {
 var connection = mysql.createConnection(options);
 //var data = connection.query("select * from sometable", function(data){
  //console.log(data)
-
+// call back promises 
+//promise find
 connection.query = util.promisify(connection.query);
 
-connection.query("somequery").then(data=>{
-    console.log(data)
-}).catch(err =>{
-    console.log(err)
-})
+//connection.query("someQuery")
+//.then(data=>{
+    //console.log(data)
+//}).catch(err =>{
+   // console.log(err)
+//})
+
+
+
 const questions = [
     {
-        name 
-    }
-]
+        name: 'choice'
+        message:' what would you like to do:',
+        type: 'list'
+        choices: "Get all employeess, "Get all roles", "Add an employee": ],
+    },
+];
