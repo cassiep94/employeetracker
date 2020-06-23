@@ -9,7 +9,18 @@ var options  = {
 
 
 var connection = mysql.createConnection(options);
-var data = connection.query("select * from sometable", function(data){
- console.log(data)
-}
-connection.query = util.promisify(connection/query);
+//var data = connection.query("select * from sometable", function(data){
+ //console.log(data)
+
+connection.query = util.promisify(connection.query);
+
+connection.query("somequery").then(data=>{
+    console.log(data)
+}).catch(err =>{
+    console.log(err)
+})
+const questions = [
+    {
+        name 
+    }
+]
