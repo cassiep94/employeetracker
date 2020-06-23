@@ -9,18 +9,19 @@ var options  = {
 
 
 var connection = mysql.createConnection(options);
-//var data = connection.query("select * from sometable", function(data){
- //console.log(data)
-// call back promises 
-//promise find
-connection.query = util.promisify(connection.query);
 
-//connection.query("someQuery")
-//.then(data=>{
-    //console.log(data)
-//}).catch(err =>{
-   // console.log(err)
-//})
+connection.query = util.promisify(connection.query);
+connection.connect(function (err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+    console.log('connected as id' + connection.threadId);
+    startApp();
+
+});
+
+
 
 
 
@@ -29,6 +30,6 @@ const questions = [
         name: 'choice'
         message:' what would you like to do:',
         type: 'list'
-        choices: "Get all employeess, "Get all roles", "Add an employee": ],
+        choices: "Get all employeess", "Get all roles", "Add all departments": "Add an department"],
     },
 ];
