@@ -1,5 +1,5 @@
 var mysql = require ('mysql');
-var in quire = require = require ('inquire');
+var inquire = require = require ('inquire');
 var util = require ('util');
 
 var options  = {
@@ -8,7 +8,8 @@ var options  = {
 }
 
 
-var data = connection.query
-var conncetion = sql.createConnection(options);
-
-connection.query = util.promsify(connection.query);
+var connection = mysql.createConnection(options);
+var data = connection.query("select * from sometable", function(data){
+ console.log(data)
+}
+connection.query = util.promisify(connection/query);
