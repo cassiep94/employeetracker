@@ -2,18 +2,19 @@ var mysql = require ('mysql');
 var inquire = require = require ('inquire');
 var util = require ('util');
 
-var connection = mysql.createConnection({
-    host: "localhost",
+var options = {
+    user: 'root',
+    password: 'Rk0978tb$$',
+    database : 'test_db',
+    host: 'localhost',
     port: 3306,
-    user: "root",
-    password: "Rk0978tb$",
-    database: "test_db"
+    dialect: 'mysql',
 
-});
+};
 
 var connection = mysql.createConnection(options);
-
 connection.query = util.promisify(connection.query);
+
 connection.connect(function (err) {
     if (err) {
         console.error('error connecting: ' + err.stack);
@@ -44,18 +45,13 @@ const departmentQues = [
     },
 ];
 
-//{
-    //choice: "Get all employess"
-//}
+
 function startApp() {
     inquire.prompt(questions).then(answers => {
     switch (answers.choice) {
     case "Get all roles":
         console.log("added an employee")
-        //inquirer.prompt(internQues).then(function(answers){
-            //console.log("ask intern")
-            //startApp();
-      //  });
+      
 
 
 
@@ -73,6 +69,7 @@ startApp();
  
 
  break;
+
  case "add department":
      inquire.prompt(departmentQues).then(function(answers){
 console.log("you entered a dept")
@@ -92,4 +89,3 @@ startApp();
 })
 
 }
-startApp();
