@@ -37,25 +37,33 @@ const questions = [
     },
 ];
 
+const departmentQues = [
+    {
+        name: 'deptName',
+        message: 'enter a department name:',
+    },
+];
+
 //{
-    choice: "Get all employess"
+    //choice: "Get all employess"
 //}
 function startApp() {
-    inquire.promt(questions).then(answers => {
+    inquire.prompt(questions).then(answers => {
     switch (answers.choice) {
-    case 'Get all roles':
-        inquirer.prompt(internQues).then(function(answers){
-            console.log 
-            startApp();
-        });
+    case "Get all roles":
+        console.log("added an employee")
+        //inquirer.prompt(internQues).then(function(answers){
+            //console.log("ask intern")
+            //startApp();
+      //  });
 
-}
+
 
 
 break;
- "Get all departments":
+case "Get all departments":
 
- inquire.promt(egineerQues).then(function)(answers){
+ inquire.prompt(egineerQues).then(function(answers){
      console.log("you asked engneer questions")
      var tableRows = await connection.query('select * from sometable');
      startApp();
@@ -63,6 +71,7 @@ break;
 
  break;
  case "add department":
+     console.log("added a department")
 
 
  default:
