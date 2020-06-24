@@ -63,21 +63,24 @@ function startApp() {
 break;
 case "Get all departments":
 
- inquire.prompt(egineerQues).then(function(answers){
-     console.log("you asked engneer questions")
-     var tableRows = await connection.query('select * from sometable');
-     startApp();
- });
+ 
 
  break;
  case "add department":
-     console.log("added a department")
+     inquire.prompt(departmentQues).then(function(answers){
+console.log("you asked engieer questions")
+var tableRows = await connection.query('seleect * from sometable');
+startApp();
+     });
+     
+     break;
 
 
  default:
-     console.log("your done entering employees!");
+     console.log("your done with your database");
     }
-}).catch(err=>){
+
+}).catch(err=>{
     console.log(err);
 })
 
