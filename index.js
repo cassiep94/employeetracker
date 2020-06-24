@@ -6,8 +6,8 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
-    database: "employees_db"
+    password: "Rk0978tb$",
+    database: "test_db"
 
 });
 
@@ -62,14 +62,21 @@ function startApp() {
 
 break;
 case "Get all departments":
+     connection.query('SELECT * from departments').then(deptRows=>{
+console.table(deptRows);
+startApp();
+     }).catch(err=>{
+         console.log(err)
+     });
+        
 
  
 
  break;
  case "add department":
      inquire.prompt(departmentQues).then(function(answers){
-console.log("you asked engieer questions")
-var tableRows = await connection.query('seleect * from sometable');
+console.log("you entered a dept")
+
 startApp();
      });
      
