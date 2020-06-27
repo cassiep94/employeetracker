@@ -44,7 +44,20 @@ function askQuestions() {
       else if(answer.userChoice === "View Roles") {
         displayRoles();
       
-    
+    }else if(answer.userChoice === "View Department") {
+        showDepartments(); 
+    }
+    else if(answer.userChoice === "View Employees") {
+        showEmployees();
+    }
+    else if(answer.userChoice === "Add Roles") {
+        addRoles();
+    }
+    else if(answer.userChoice === "Add Department") {
+        addDepartment();
+    }
+    else if(answer.userChoice === "Update Roles") {
+        updateRoles();
     
     
     
@@ -55,7 +68,7 @@ function askQuestions() {
 }
 
 // function to handle new employees 
-function employeeAdd() {
+function addEmployee() {
   // prompt for info about the item being put up for auction
   inquirer
     .prompt([
@@ -75,8 +88,6 @@ function employeeAdd() {
         
         message: "What's The Employee Role ID?"
       },
-
-     
         { 
             name: "manager_id",
             type: "number",
@@ -94,11 +105,11 @@ function employeeAdd() {
         //  return false;
        // }
      // }
-    //])
+    ])
     .then(function(answer) {
       // when finished prompting, insert a new item into the db with that info
       connection.query(
-        "INSERT INTO employee (first_name, last_name, role_id, manager_id) ",
+        "INSERT INTO employee (first_name, last_name, role_id, manager_id) SET ?",
         {
           item_name: answer.item,
           category: answer.category,
