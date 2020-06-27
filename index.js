@@ -13,69 +13,92 @@ var connection = mysql.createConnection({
 
   // Your password
   password: "Rk0978tb$$",
-  database: "greatBay_DB"
+  database: "employeetracker_db"
 });
 
 // connect to the mysql server and sql database
 connection.connect(function(err) {
   if (err) throw err;
   // run the start function after the connection is made to prompt the user
-  start();
+  askQuestions();
 });
 
 // function which prompts the user for what action they should take
-function start() {
+function askQuestions() {
   inquirer
     .prompt({
-      name: "postOrBid",
+      name: "UserChoice",
       type: "list",
-      message: "Would you like to [POST] an auction or [BID] on an auction?",
-      choices: ["POST", "BID", "EXIT"]
+      message: "What would you like to do?",
+      choices: ["Add New Employees", "View Employees", "View Department", 
+      "View Roles", "Add Department","Add Roles","Update Roles", 
+    "EXIT"]
     })
+
+
     .then(function(answer) {
       // based on their answer, either call the bid or the post functions
-      if (answer.postOrBid === "POST") {
-        postAuction();
+      if (answer.userChoice === "Add New Employees") {
+        addEmployee();
       }
-      else if(answer.postOrBid === "BID") {
-        bidAuction();
-      } else{
+      else if(answer.userChoice === "View Roles") {
+        displayRoles();
+      
+    
+    
+    
+    
+    } else{
         connection.end();
       }
     });
 }
 
-// function to handle posting new items up for auction
-function postAuction() {
+// function to handle new employees 
+function employeeAdd() {
   // prompt for info about the item being put up for auction
   inquirer
     .prompt([
       {
-        name: "item",
+        name: "first_name",
         type: "input",
-        message: "What is the item you would like to submit?"
+        message: "Enter Employees First Name?"
       },
       {
-        name: "category",
+        name: "last_name",
         type: "input",
-        message: "What category would you like to place your auction in?"
+        message: "Enter Employee Last Name?"
       },
       {
-        name: "startingBid",
-        type: "input",
-        message: "What would you like your starting bid to be?",
-        validate: function(value) {
-          if (isNaN(value) === false) {
-            return true;
-          }
-          return false;
+        name: "role_id",
+        type: "number",
+        
+        message: "What's The Employee Role ID?"
+      },
+
+     
+        { 
+            name: "manager_id",
+            type: "number",
+        
+            message:"What's The Manager's ID?"
+
         }
-      }
-    ])
+    
+        
+        
+       // validate: function(value) {
+          //if (isNaN(value) === false) {
+          //  return true;
+         // }
+        //  return false;
+       // }
+     // }
+    //])
     .then(function(answer) {
       // when finished prompting, insert a new item into the db with that info
       connection.query(
-        "INSERT INTO auctions SET ?",
+        "INSERT INTO employee (first_name, last_name, role_id, manager_id) ",
         {
           item_name: answer.item,
           category: answer.category,
