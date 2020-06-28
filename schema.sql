@@ -3,11 +3,22 @@ CREATE DATABASE employeetracker_db;
 
 USE employeetracker_db;
 
-CREATE TABLE auctions(
-  id INT NOT NULL AUTO_INCREMENT,
-  item_name VARCHAR(100) NOT NULL,
-  category VARCHAR(45) NOT NULL,
-  starting_bid INT default 0,
-  highest_bid INT default 0,
-  PRIMARY KEY (id)
+CREATE TABLE departments (
+  department_id INT AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(30) NOT NULL
+  );
+CREATE TABLE role ( 
+role_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+title VARCHAR(30),
+salary DECIMAL(10,2),
+department_id INT(10)
 );
+  
+  CREATE TABLE employee (
+  employee_id INT AUTO_INCREMENT not null PRIMARY KEY,
+  first_name varchar(30) not null,
+  last_name varchar (30) not null,
+  role_id INT NOT NULL,
+  manager_id INT
+  
+  )
